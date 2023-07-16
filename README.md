@@ -27,3 +27,9 @@
 - `terraform fmt -recursive .` : To format all the terraform files in the directory
 - `terraform apply -auto-approve` : To build the infrastructure. Note use the -auto-approve flag if you want to skip the plan output
 - `terraform destroy -auto-approve` : To bring down the infrastructure
+
+## Kubernetes Commands
+- `aws eks update-kubeconfig --region us-east-1 --name dp-cluster` : To update the context for the kubectl
+- `kubectl apply -f deployment.yaml` : To create the Kubernetes Deployment
+- `kubectl apply -f service.yaml` : To create the Service
+- `kubectl apply -f ingress.yaml` : To create the Ingress AKA Load Balancer

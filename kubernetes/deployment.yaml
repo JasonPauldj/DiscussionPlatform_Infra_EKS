@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dp-app-pod
+  template:
+    metadata:
+      name: dp-pod
+      labels:
+        app: dp-app-pod
+    spec:
+      containers:
+      - name: dp-container
+        image: jasonpaulneu/dp:latest
+        resources:
+          limits:
+            memory: "3072Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: hibernate_connection_password
+          value: ChangeThisPassword
+        - name: hibernate_connection_username
+          value: root
+        - name: hibernate_host
+          value: ChangeThisHost
+        - name: port
+          value: ChangeThisPort
+        livenessProbe:
+          httpGet:
+            port: 8080
+            path: '/health'
+          initialDelaySeconds: 60
+  replicas: 1
